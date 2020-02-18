@@ -1,30 +1,30 @@
-import React, { useState } from 'react';
-import { reduxForm } from 'redux-form';
-import { Field } from 'redux-form';
+import React, { useState } from "react";
+import { reduxForm } from "redux-form";
+import { Field } from "redux-form";
 
 //material ui
-import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Fab from '@material-ui/core/Fab';
-import Typography from '@material-ui/core/Typography';
-import AddIcon from '@material-ui/icons/Add';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import TextField from '@material-ui/core/TextField';
+import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import Fab from "@material-ui/core/Fab";
+import Typography from "@material-ui/core/Typography";
+import AddIcon from "@material-ui/icons/Add";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles(theme => ({
-  '@global': {
+  "@global": {
     body: {
       backgroundColor: theme.palette.common.white
     }
   },
   root: {
     flexGrow: 1,
-    overflow: 'hidden',
+    overflow: "hidden",
     padding: theme.spacing(0, 3)
   },
   paper: {
@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.secondary.main
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1)
   },
   submit: {
@@ -85,7 +85,6 @@ const CreateGroup = props => {
   return (
     <div>
       <Paper className={classes.paper}>
-        {/* <form className={classes.form} onSubmit={handleSubmit(onSubmitData)}> */}
         <Grid container wrap="nowrap" spacing={2}>
           <Grid justify="space-between" container spacing={24}>
             <Grid item>
@@ -111,7 +110,11 @@ const CreateGroup = props => {
         {/* </form> */}
       </Paper>
       {/* Dialog */}
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="form-dialog-title"
+      >
         <form className={classes.form} onSubmit={handleSubmit(onSubmitData)}>
           <DialogContent>
             <DialogContentText>Добавить новую группу</DialogContentText>
@@ -121,7 +124,7 @@ const CreateGroup = props => {
             <Button onClick={handleClose} color="primary">
               Отменить
             </Button>
-            <Button onClick={handleClose} type="submit" color="primary" type="submit">
+            <Button onClick={handleClose} type="submit" color="primary">
               Добавить
             </Button>
           </DialogActions>
@@ -132,5 +135,5 @@ const CreateGroup = props => {
 };
 
 export default reduxForm({
-  form: 'create_group'
+  form: "create_group"
 })(CreateGroup);

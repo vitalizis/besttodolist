@@ -3,8 +3,6 @@ import React from 'react';
 import { reduxForm } from 'redux-form';
 import { Field } from 'redux-form';
 
-import { Redirect, Link } from 'react-router-dom';
-
 //material ui import
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';

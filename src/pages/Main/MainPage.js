@@ -54,7 +54,6 @@ const useStyles = makeStyles(theme => ({
 const MainPage = props => {
   const { tasks, removeTask, addTask, editTask, removeSubTask, addSubTask, editSubTask } = props;
   const [cookies, removeCookie] = useCookies(['cookie-name']);
-  const [open, setOpen] = useState(false);
   const [dense, setDense] = React.useState(false);
   const [secondary, setSecondary] = useState(false);
   const logOut = () => {
@@ -70,15 +69,7 @@ const MainPage = props => {
   const removeSubTaskClick = (group_id, id) => {
     removeSubTask(group_id, id);
   };
-
-  function handleClickOpen() {
-    setOpen(true);
-  }
-
-  function handleClose() {
-    setOpen(false);
-  }
-
+  
   const classes = useStyles();
   return (
     <div>
