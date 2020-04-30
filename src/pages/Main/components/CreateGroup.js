@@ -86,7 +86,7 @@ const CreateGroup = props => {
     <div>
       <Paper className={classes.paper}>
         <Grid container wrap="nowrap" spacing={2}>
-          <Grid justify="space-between" container spacing={24}>
+          <Grid justify="space-between" container spacing={2}>
             <Grid item>
               <Typography gutterBottom variant="h5" component="h2">
                 Добавить новую группу

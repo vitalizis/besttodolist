@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { reduxForm } from 'redux-form';
 import { Field } from 'redux-form';
 
@@ -45,20 +45,23 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const nameField = ({ input, label, meta: { touched, error }, ...custom }) => (
+const NameField = (props) => {
+  const { input, value, label, meta: { touched, error }, ...args } = props;
+  return (
   <TextField
     variant="outlined"
     margin="normal"
     required
     fullWidth
-    name="editSubTaskName"
+    name="nameEditSubTask"
     type="text"
     id="editGroup"
     autoComplete="login"
     {...input}
-    {...custom}
+    {...args}
   />
-);
+  );
+};
 
 const EditGroup = props => {
   const [open, setOpen] = useState(false);
@@ -68,6 +71,7 @@ const EditGroup = props => {
 
   function handleClickOpen() {
     setOpen(true);
+    props.initialize({ nameEditSubTask: props.nameEditSubTask });
   }
 
   function handleClose() {
@@ -88,14 +92,18 @@ const EditGroup = props => {
         <form className={classes.form} onSubmit={handleSubmit(onSubmitData)}>
           <DialogContent>
             <DialogContentText>Редактировать текущую группу</DialogContentText>
-            <Field component={nameField} name="nameEditSubTask" placeholder={nameEditSubTask} />
+            <Field
+              component={NameField}
+              name="nameEditSubTask"
+              placeholder={nameEditSubTask}
+            />
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} color="primary">
               Отменить
             </Button>
             <Button onClick={handleClose} type="submit" color="primary" type="submit">
-              Добавить
+              Update
             </Button>
           </DialogActions>
         </form>

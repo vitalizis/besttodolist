@@ -80,20 +80,28 @@ function tasksReducer(state = initialState, action) {
                     return item
                 }
                 return {
-                    ...item, subTasks: [...item.subTasks, {id: item.subTasks.length!==0 ? item.subTasks[item.subTasks.length - 1].id + 1: 1, name: action.name}]
+                    ...item, subTasks: [
+                      ...item.subTasks,
+                        {id: item.subTasks.length!==0 ? item.subTasks[item.subTasks.length - 1].id + 1: 1,
+                            name: action.name
+                        }]
                 }
             })
         //
         case EDIT_SUB_TASK:
 
-            return state.map((item, index) => {
-                if (item.id !== action.group_id) {
-                    return item
+            return state.map((group) => {
+                if (group.id !== action.group_id) {
+                    return group;
                 }
                 return {
-                    ...item, subTasks: [...item.subTasks.filter((item, index) => item.id !== action.id), {id: action.id, name: action.name}]
+                    ...group,
+                    subTasks: group.subTasks.map(
+                      (task) => task.id !== action.id ? task :
+                        { ...task, name: action.name }
+                    ),
                 }
-            })
+            });
 
         default:
             return state;

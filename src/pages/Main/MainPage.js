@@ -53,9 +53,9 @@ const useStyles = makeStyles(theme => ({
 
 const MainPage = props => {
   const { tasks, removeTask, addTask, editTask, removeSubTask, addSubTask, editSubTask } = props;
-  const [cookies, removeCookie] = useCookies(['cookie-name']);
-  const [dense, setDense] = React.useState(false);
-  const [secondary, setSecondary] = useState(false);
+  const [removeCookie] = useCookies(['cookie-name']);
+  const [dense] = React.useState(false);
+  const [secondary] = useState(false);
   const logOut = () => {
     removeCookie('token');
     window.location.reload();
@@ -69,7 +69,7 @@ const MainPage = props => {
   const removeSubTaskClick = (group_id, id) => {
     removeSubTask(group_id, id);
   };
-  
+
   const classes = useStyles();
   return (
     <div>
@@ -85,20 +85,23 @@ const MainPage = props => {
       </Button>
       <CreateGroup addTask={addTask} />
       {tasks
-        ? tasks.map(task => (
-            <Paper className={classes.paper}>
+        ? tasks.map(group => (
+            <Paper
+              key={group.id}
+              className={classes.paper}
+            >
               <Grid container wrap="nowrap" spacing={2}>
                 <Grid item>
-                  <Grid justify="space-between" container spacing={24}>
+                  <Grid justify="space-between" container spacing={2}>
                     <Grid item>
                       <Typography gutterBottom variant="h5" component="h2">
-                        Группа: {task.name}
+                        Группа: {group.name}
                       </Typography>
                     </Grid>
-                    <EditGroup id={task.id} editTask={editTask} nameEditTask={task.name} />
+                    <EditGroup id={group.id} editTask={editTask} nameEditTask={group.name} />
                     <Grid item>
                       <div>
-                        <DeleteIcon onClick={() => removeTaskClick(task.id)} color="secondary">
+                        <DeleteIcon onClick={() => removeTaskClick(group.id)} color="secondary">
                           Delete
                           <DeleteIcon className={classes.rightIcon} />
                         </DeleteIcon>
@@ -106,11 +109,11 @@ const MainPage = props => {
                       </div>
                     </Grid>
                   </Grid>
-                  <CreateSubTask addSubTask={addSubTask} group_id={task.id} />
+                  <CreateSubTask addSubTask={addSubTask} group_id={group.id} />
                   <List dense={dense}>
-                    {task.subTasks
-                      ? task.subTasks.map(subTask => (
-                          <ListItem>
+                    {group.subTasks
+                      ? group.subTasks.map(subTask => (
+                          <ListItem key={subTask.id}>
                             <ListItemText
                               primary={subTask.name}
                               secondary={secondary ? 'Secondary text' : null}
@@ -119,13 +122,13 @@ const MainPage = props => {
                               <IconButton
                                 edge="end"
                                 aria-label="delete"
-                                onClick={() => removeSubTaskClick(task.id, subTask.id)}
+                                onClick={() => removeSubTaskClick(group.id, subTask.id)}
                               >
                                 <DeleteIcon />
                               </IconButton>
                               <EditSubTask
                                 nameEditSubTask={subTask.name}
-                                group_id={task.id}
+                                group_id={group.id}
                                 id={subTask.id}
                                 editSubTask={editSubTask}
                               />

@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const nameField = ({ input, label, meta: { touched, error }, ...custom }) => (
+const nameField = ({ input, label, ...custom }) => (
   <TextField
     variant="outlined"
     margin="normal"
@@ -85,7 +85,7 @@ const CreateGroup = props => {
   return (
     <div>
       <Grid container wrap="nowrap" spacing={2}>
-        <Grid justify="space-between" container spacing={24}>
+        <Grid justify="space-between" container spacing={2}>
           <Grid item>
             <Typography gutterBottom>Добавить задачу к группе</Typography>
           </Grid>
@@ -114,7 +114,7 @@ const CreateGroup = props => {
             <Button onClick={handleClose} color="primary">
               Отменить
             </Button>
-            <Button onClick={handleClose} type="submit" color="primary" type="submit">
+            <Button onClick={handleClose} type="submit" color="primary">
               Добавить
             </Button>
           </DialogActions>

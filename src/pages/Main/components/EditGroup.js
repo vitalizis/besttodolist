@@ -91,13 +91,13 @@ const EditGroup = props => {
         <form className={classes.form} onSubmit={handleSubmit(onSubmitData)}>
           <DialogContent>
             <DialogContentText>Редактировать текущую группу</DialogContentText>
-            <Field component={nameField} name="editGroupName" placeholder={nameEditTask} />
+            <Field component={nameField} value="lol" name="editGroupName" placeholder={nameEditTask} />
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} color="primary">
               Отменить
             </Button>
-            <Button onClick={handleClose} type="submit" color="primary" type="submit">
+            <Button onClick={handleClose} type="submit" color="primary">
               Добавить
             </Button>
           </DialogActions>
